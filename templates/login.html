@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mycss/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='myfont/css/all.min.css')}}">
+    <script src="{{ url_for('static', filename='myjs/jquery.min.js')}}"></script>
+    <style>
+        .shadow{
+            box-shadow:3px 4px 10px black;
+            padding:50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top: 100px">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="col-md-offset-3 col-md-5">
+                <div class="shadow">
+                    <form action="/login" method="POST" autocomplete="on">
+                        <h3 class="page-header text-primary">Login Here!!!</h3>
+
+                         {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category,message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-success btn-block">
+                        <a href="{{url_for('register')}}" class="btn btn-primary btn-block">Register Here</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(3000)
+    });
+</script>
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
+{#    <title>Medlabs</title>#}
+{#    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">#}
+{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>#}
+{#    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{#</head>#}
+{#<style>#}
+{##}
+{#.login-container{#}
+{#    margin-top: 5%;#}
+{#    margin-bottom: 5%;#}
+{#}#}
+{#.login-logo{#}
+{#    position: relative;#}
+{#    margin-left: -41.5%;#}
+{#}#}
+{#.login-logo img{#}
+{#    position: absolute;#}
+{#    width: 20%;#}
+{#    margin-top: 19%;#}
+{#    background: #282726;#}
+{#    border-radius: 4.5rem;#}
+{#    padding: 5%;#}
+{#}#}
+{#.login-form-1{#}
+{#    padding: 9%;#}
+{#    background:#282726;#}
+{#    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);#}
+{#}#}
+{#.login-form-1 h3{#}
+{#    text-align: center;#}
+{#    margin-bottom:12%;#}
+{#    color:#fff;#}
+{#}#}
+{#.login-form-2{#}
+{#    padding: 9%;#}
+{#    background: #f05837;#}
+{#    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);#}
+{#}#}
+{#.login-form-2 h3{#}
+{#    text-align: center;#}
+{#    margin-bottom:12%;#}
+{#    color: #fff;#}
+{#}#}
+{#.btnSubmit{#}
+{#    font-weight: 600;#}
+{#    width: 50%;#}
+{#    color: #282726;#}
+{#    background-color: #fff;#}
+{#    border: none;#}
+{#    border-radius: 1.5rem;#}
+{#    padding:2%;#}
+{#}#}
+{#.btnForgetPwd{#}
+{#    color: #fff;#}
+{#    font-weight: 600;#}
+{#    text-decoration: none;#}
+{#}#}
+{#.btnForgetPwd:hover{#}
+{#    text-decoration:none;#}
+{#    color:#fff;#}
+{#}#}
+{#.fon{#}
+{#    color: white;#}
+{#    text-align: center;#}
+{#}#}
+{#</style>#}
+{#<body>#}
+{##}
+{#<div class="container login-container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-6 login-form-1">#}
+{#                    <h3>Application Login</h3>#}
+{#                    <h6 class="fon">Login here to access 3 Minute Depression Test</h6>#}
+{#                    #}
+{#                    #}
+{#                </div>#}
+{#                <div class="col-md-6 login-form-2">#}
+{#                    <div class="login-logo">#}
+{#                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>#}
+{#                    </div>#}
+{#                    <h3>Login</h3>#}
+{#                    <form action="/login" method="POST">#}
+{#                        <div class="form-group">#}
+{#                            <input type="text" name="username" class="form-control" placeholder="Your Username *" value="" />#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <input type="password" name="password" class="form-control" placeholder="Your Password *" value="" />#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{#                            <input type="submit" class="btnSubmit" value="Login" />#}
+{#                        </div>#}
+{#                        <div class="form-group">#}
+{##}
+{#                            <a href="#" class="btnForgetPwd" value="Login">Forget Password?</a>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#</body>#}
+{#</html>#}
+
